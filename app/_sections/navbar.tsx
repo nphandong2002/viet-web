@@ -1,5 +1,6 @@
 "use client";
 
+import Logo from "@/components/logo";
 import { useConfigWeb } from "@/context/config";
 
 function Navbar() {
@@ -10,7 +11,9 @@ function Navbar() {
       style={{
         width: configWeb.widthNavbar,
       }}
-    ></nav>
+    >
+      <Logo />
+    </nav>
   );
 }
 

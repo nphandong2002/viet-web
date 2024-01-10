@@ -3,14 +3,14 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
-import { title } from "@/config/site";
+import { TITLE } from "@/config/site";
 import Navbar from "./_sections/navbar";
 import { ConfigWebProvider } from "@/context/config/config-web-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: { default: title, template: "%s | " + title },
+  title: { default: TITLE, template: "%s | " + TITLE },
   icons: [
     {
       url: "/logo.png",
