@@ -5,6 +5,7 @@ import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import { title } from "@/config/site";
 import Navbar from "./_sections/navbar";
+import { ConfigWebProvider } from "@/context/config/config-web-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,14 +23,21 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const session = await auth();
   return (
     <SessionProvider session={session}>
-      <html lang="en">
-        <body className={inter.className}>
-          <div className="flex">
-            <Navbar />
-            {children}
-          </div>
-        </body>
-      </html>
+      <ConfigWebProvider
+        defaultSettings={{
+          themeMode: "light",
+          widthNavbar: 200,
+        }}
+      >
+        <html lang="en">
+          <body className={inter.className}>
+            <div className="flex">
+              <Navbar />
+              {children}
+            </div>
+          </body>
+        </html>
+      </ConfigWebProvider>
     </SessionProvider>
   );
 }
