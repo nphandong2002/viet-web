@@ -11,11 +11,12 @@ const ProcionoStyle = Lemon({
 
 function Logo() {
   return (
-    <div className="flex flex-row justify-center items-center h-[10%]">
-      <div>
-        <Image alt="logo" src="/logo.png" width="16" height="16" />
+    <div className="hover:opacity-75 transition items-center gap-x-2 flex ">
+      <div className=" rounded-full border-2">
+        <Image alt="logo" src="/logo.png" height={50} width={50} />
       </div>
-      <div className="" style={ProcionoStyle.style}>
+
+      <div className="hidden md:flex" style={ProcionoStyle.style}>
         {NAME_LOGO}
       </div>
     </div>

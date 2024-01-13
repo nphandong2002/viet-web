@@ -1,6 +1,8 @@
 export type SettingsValueProps = {
-  themeMode: "light" | "dark";
   widthNavbar: number;
+  theme: {
+    mode: "light" | "dark";
+  };
 };
 
 export type SettingsContextProps = SettingsValueProps & {

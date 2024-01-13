@@ -4,6 +4,7 @@ import { ConfigWebContext } from "./config-web-context";
 import { isEqual } from "lodash";
 import { useEffect, useMemo, useCallback, useState } from "react";
 import { SettingsValueProps } from "./type";
+import { useTheme } from "next-themes";
 
 // ----------------------------------------------------------------------
 
@@ -14,7 +15,7 @@ type SettingsProviderProps = {
 
 export function ConfigWebProvider({ children, defaultSettings }: SettingsProviderProps) {
   const state = defaultSettings;
-
+  const { setTheme } = useTheme();
   const [openDrawer, setOpenDrawer] = useState(false);
   const update = () => {};
   const reset = () => {};
@@ -27,7 +28,9 @@ export function ConfigWebProvider({ children, defaultSettings }: SettingsProvide
   const onCloseDrawer = useCallback(() => {
     setOpenDrawer(false);
   }, []);
-
+  useEffect(() => {
+    setTheme(defaultSettings.theme.mode);
+  }, [defaultSettings, setTheme]);
   const canReset = !isEqual(state, defaultSettings);
 
   const memoizedValue = useMemo(
