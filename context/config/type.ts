@@ -5,9 +5,14 @@ export type SettingsValueProps = {
   };
 };
 
+export enum MinMaxWidthNavbar {
+  MIN = 10,
+  MAX = 30,
+}
+
 export type SettingsContextProps = SettingsValueProps & {
   // Update
-  onUpdate: (name: string, value: string | boolean) => void;
+  onUpdate: (name: string, value: any) => void;
   // Reset
   canReset: boolean;
   onReset: VoidFunction;

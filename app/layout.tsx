@@ -7,6 +7,8 @@ import { TITLE } from "@/config/site";
 import { ConfigWebProvider } from "@/context/config/config-web-provider";
 import Navbar from "@/sections/navbar/navbar";
 import { ThemeProvider } from "@/context/theme";
+import MainLayout from "@/sections/layouts/main/layout";
+import { MinMaxWidthNavbar } from "@/context/config/type";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,17 +30,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <ThemeProvider attribute="class" enableSystem disableTransitionOnChange>
           <ConfigWebProvider
             defaultSettings={{
-              widthNavbar: 200,
+              widthNavbar: MinMaxWidthNavbar.MIN,
               theme: {
                 mode: "light",
               },
             }}
           >
             <body className={inter.className}>
-              <div className="flex">
-                <Navbar />
-                {children}
-              </div>
+              <MainLayout>{children}</MainLayout>
             </body>
           </ConfigWebProvider>
         </ThemeProvider>

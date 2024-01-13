@@ -14,10 +14,24 @@ type SettingsProviderProps = {
 };
 
 export function ConfigWebProvider({ children, defaultSettings }: SettingsProviderProps) {
-  const state = defaultSettings;
+  const [state, setState] = useState(defaultSettings);
   const { setTheme } = useTheme();
   const [openDrawer, setOpenDrawer] = useState(false);
-  const update = () => {};
+  const update = (name: string, value: any) => {
+    setState((prevValue: any) => {
+      window.localStorage.setItem(
+        "tesst",
+        JSON.stringify({
+          ...prevValue,
+          [name]: value,
+        })
+      );
+      return {
+        ...prevValue,
+        [name]: value,
+      };
+    });
+  };
   const reset = () => {};
 
   // Drawer
