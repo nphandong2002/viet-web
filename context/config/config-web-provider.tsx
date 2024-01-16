@@ -15,7 +15,6 @@ type SettingsProviderProps = {
 
 export function ConfigWebProvider({ children, defaultSettings }: SettingsProviderProps) {
   const [state, setState] = useState(defaultSettings);
-  const { setTheme } = useTheme();
   const [openDrawer, setOpenDrawer] = useState(false);
   const update = (name: string, value: any) => {
     setState((prevValue: any) => {
@@ -42,9 +41,7 @@ export function ConfigWebProvider({ children, defaultSettings }: SettingsProvide
   const onCloseDrawer = useCallback(() => {
     setOpenDrawer(false);
   }, []);
-  useEffect(() => {
-    setTheme(defaultSettings.theme.mode);
-  }, [defaultSettings, setTheme]);
+
   const canReset = !isEqual(state, defaultSettings);
 
   const memoizedValue = useMemo(

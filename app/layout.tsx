@@ -5,7 +5,6 @@ import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import { TITLE } from "@/config/site";
 import { ConfigWebProvider } from "@/context/config/config-web-provider";
-import Navbar from "@/sections/navbar/navbar";
 import { ThemeProvider } from "@/context/theme";
 import MainLayout from "@/sections/layouts/main/layout";
 import { MinMaxWidthNavbar } from "@/context/config/type";
@@ -26,22 +25,20 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const session = await auth();
   return (
     <html lang="en">
-      <SessionProvider session={session}>
-        <ThemeProvider attribute="class" enableSystem disableTransitionOnChange>
-          <ConfigWebProvider
-            defaultSettings={{
-              widthNavbar: MinMaxWidthNavbar.MIN,
-              theme: {
-                mode: "light",
-              },
-            }}
-          >
-            <body className={inter.className}>
-              <MainLayout>{children}</MainLayout>
-            </body>
-          </ConfigWebProvider>
-        </ThemeProvider>
-      </SessionProvider>
+      <ConfigWebProvider
+        defaultSettings={{
+          widthNavbar: MinMaxWidthNavbar.MIN,
+          theme: {
+            mode: "light",
+          },
+        }}
+      >
+        <body className={inter.className}>
+          <SessionProvider session={session}>
+            <MainLayout>{children}</MainLayout>
+          </SessionProvider>
+        </body>
+      </ConfigWebProvider>
     </html>
   );
 }
